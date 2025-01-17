@@ -1,0 +1,39 @@
+.hero{
+    background-color: rgb(178, 211, 253);
+    background-image: url("");
+    width: 100%;
+    height: 700px;
+    background-repeat: no-repeat;
+.herooo{
+    display: flex;
+    align-items: center;
+    
+}
+    .bgImage{
+        img{
+            width: 676px;
+        }
+    }
+    .heroContainer{
+        padding-left: 100px;
+        .discount{
+            color: blue;
+            font-size: 25px;
+           
+        }
+        h1{
+            font-size: 100px;
+        }
+        button{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background-color: blue;
+            color: white;
+            transition: all 0.3s;
+            &:hover{
+                background-color: rgb(153, 206, 231);
+            }
+        }
+    }
+}
