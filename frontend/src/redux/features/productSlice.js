@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   products: [],
+  alProduct: []
 };
 const baseUrl = "http://localhost:5000/product";
 
@@ -25,10 +26,21 @@ export const addProduct = createAsyncThunk("addproduct", async (product) => {
 export const productSlice = createSlice({
   name: "counter",
   initialState,
-  reducers: {},
+  reducers: {
+    sortLow: (state) => {
+      state.products.sort((a, b) => a.price - b.price)
+    },
+    sorthigh: (state) => {
+      state.products.sort((a, b) => b.price - a.price)
+    },
+    search: (state, action) => {
+      state.products = state.alProduct.filter((item) => item.name.toLowerCase().includes(action.payload.toLowerCase().trim()))
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getData.fulfilled, (state, action) => {
       state.products = action.payload;
+      state.alProduct = action.payload;
     }),
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter(
@@ -41,6 +53,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { extraReducers } = productSlice.actions;
+export const { extraReducers, sortLow, sorthigh, search } = productSlice.actions;
 
 export default productSlice.reducer;
